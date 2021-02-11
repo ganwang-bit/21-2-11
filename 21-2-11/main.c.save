@@ -1,0 +1,200 @@
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int main()
+//{
+//    printf("Hello world!\n");
+//    return 0;
+//}
+//#include<stdio.h>
+//int panj(int n)
+//{
+//    int arr[10]={0},i=0,sum=0,j;
+//    while(i<4)
+//    {
+//        arr[n%10]++;
+//        n/=10;
+//        i++;
+//    }
+//    for(i=9;i>=0;i--)
+//    {
+//        if(arr[i])
+//        {
+//            for(j=0;j<arr[i];j++)
+//            {
+//                sum*=10;
+//                sum+=i;
+//            }
+//        }
+//    }
+//    return sum;
+//}
+//int pans(int n)
+//{
+//    int arr[10]={0},i=0,j,sum=0;
+//    while(i<4)
+//    {
+//        i++;
+//        arr[n%10]++;
+//        n/=10;
+//    }
+//    for(i=0;i<10;i++)
+//    {
+//        if(arr[i])
+//        {
+//            for(j=0;j<arr[i];j++)
+//            {
+//                sum*=10;
+//                sum+=i;
+//            }
+//        }
+//    }
+//    return sum;
+//}
+//int main()
+//{
+//    int n;
+//    scanf("%d",&n);
+//    int jiang,sheng;
+//    do
+//    {
+//        jiang=panj(n);
+//        sheng=pans(n);
+//        n=jiang-sheng;
+//        printf("%04d - %04d = %04d\n",jiang,sheng,jiang-sheng);
+//    }while(n!=0&&n!=6174);
+//    return 0;
+//}
+//#include<stdio.h>
+//int main()
+//{
+//    int p,q,r;
+//    for(p=0;p<=1;p++)
+//        for(q=0;q<=1;q++)
+//            for(r=0;r<=1;r++)
+//                if((p&&q&&r&&!r)||(!p&&!q&&r&&!r)||(!p&&q&&!r&&!r))
+//                {
+//                    printf("%d %d %d\n",p,q,r);
+//                }
+//    return 0;
+//}
+//#include<stdio.h>
+//struct bing
+//{
+//    int liang;
+//    int qian;
+//    double bi;
+//};
+//int main()
+//{
+//    int n,xu,i,j;
+//    scanf("%d %d",&n,&xu);
+//    struct bing b[n];
+//    for(i=0;i<n;i++)
+//    {
+//        scanf("%d",&b[i].liang);
+//    }
+//    for(i=0;i<n;i++)
+//    {
+//        scanf("%d",&b[i].qian);
+//        b[i].bi=b[i].qian/(double)b[i].liang;
+//    }
+//    struct bing tmp;
+//    for(i=0;i<n-1;i++)
+//    {
+//        for(j=0;j<n-1-i;j++)
+//        {
+//            if(b[j].bi<b[j+1].bi)
+//            {
+//                tmp=b[i];
+//                b[i]=b[i+1];
+//                b[i+1]=tmp;
+//            }
+//        }
+//    }
+//    i=0;
+//    double sum=0;
+//    while(xu)
+//    {
+//        if(xu>b[i].liang)
+//        {
+//            sum+=b[i].qian;
+//            xu-=b[i].liang;
+//            i++;
+//        }
+//        else if(xu==b[i].liang)
+//        {
+//            xu-=b[i].liang;
+//            sum+=b[i].qian;
+//            i++;
+//        }
+//        else
+//        {
+//            sum+=xu*b[i].bi;
+//            xu-=xu;
+//            i++;
+//        }
+//    }
+//    printf("%.2f",sum);
+//    return 0;
+//}
+#include<stdio.h>
+struct bing
+{
+    int liang;
+    int qian;
+    double bi;
+};
+int main()
+{
+    int n,xu,i,j;
+    scanf("%d %d",&n,&xu);
+    struct bing b[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&b[i].liang);
+    }
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&b[i].qian);
+        b[i].bi=b[i].qian/(double)b[i].liang;
+    }
+    struct bing tmp;
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-1-i;j++)
+        {
+            if(b[j].bi<b[j+1].bi)
+            {
+                tmp=b[j];
+                b[j]=b[j+1];
+                b[j+1]=tmp;
+            }
+        }
+    }
+    i=0;
+    double sum=0;
+    while(xu)
+    {
+        if(xu>b[i].liang)
+        {
+            sum+=b[i].qian;
+            xu-=b[i].liang;
+            i++;
+        }
+        else if(xu==b[i].liang)
+        {
+            xu-=b[i].liang;
+            sum+=b[i].qian;
+            i++;
+        }
+        else 
+        {
+            sum+=xu*b[i].bi;
+            xu-=xu;
+            i++;
+        }
+    }
+    printf("%.2lf",sum);
+    return 0;
+}
